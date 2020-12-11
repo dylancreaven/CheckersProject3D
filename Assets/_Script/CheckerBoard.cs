@@ -37,8 +37,8 @@ public class CheckerBoard : MonoBehaviour
     private Vector2 startDrag;
     private Vector2 endDrag;
 
-    int whitewins=PlayerPrefs.GetInt("WhiteWins");
-    int blackwins=PlayerPrefs.GetInt("BlackWins");
+    int whitewins;
+    int blackwins;
 
 
     private Player player;
