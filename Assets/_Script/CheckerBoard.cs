@@ -37,10 +37,16 @@ public class CheckerBoard : MonoBehaviour
     private Vector2 startDrag;
     private Vector2 endDrag;
 
+    int whitewins=PlayerPrefs.GetInt("WhiteWins");
+    int blackwins=PlayerPrefs.GetInt("BlackWins");
+
+
     private Player player;
     public int currentLevel;
     private void Start()
     {
+        whitewins=PlayerPrefs.GetInt("WhiteWins");
+        blackwins=PlayerPrefs.GetInt("BlackWins");
         currentLevel = whichLevel();
         alertCanvas.GetComponent<Image>().enabled = false;
         Instance = this;
@@ -74,6 +80,14 @@ public class CheckerBoard : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Victory(true); //test white wins
+        }
+        if(Input.GetKeyDown(KeyCode.Delete))
+        {
+            Victory(false); //test black wins
+        }
         if (gameIsOver)
         {
             if (Time.time - winTime > 3.0f)
@@ -440,7 +454,7 @@ public class CheckerBoard : MonoBehaviour
         if (isWhiteTurn == true)
         {
             isBlackTurn = false;
-            print("White's Turn a.k.a Player's turn");
+           // print("White's Turn a.k.a Player's turn");
         }
 
         if (isWhiteTurn == false)
@@ -479,10 +493,16 @@ public class CheckerBoard : MonoBehaviour
     {
         winTime = Time.time;
 
-        if (isWhite)
+        if (isWhite){
+           whitewins++;
+           PlayerPrefs.SetInt("WhiteWins",whitewins);
             Alert("White team has won");
-        else
+        }
+        else{
+            blackwins++;
+            PlayerPrefs.SetInt("BlackWins",blackwins);
             Alert("Black team has won");
+        }
 
         gameIsOver = true;
     }
