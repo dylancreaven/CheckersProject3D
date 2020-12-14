@@ -80,20 +80,19 @@ public class CheckerBoard : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        //hotkeys to force a win to that i don't have to play through an entire game of checkers when testing
+       /* if(Input.GetKeyDown(KeyCode.Space))
         {
             Victory(true); //test white wins
         }
         if(Input.GetKeyDown(KeyCode.Delete))
         {
             Victory(false); //test black wins
-        }
+        }*/
         if (gameIsOver)
         {
             if (Time.time - winTime > 3.0f)
             {
-
-
                 SceneManager.LoadScene("Menu");
             }
 
